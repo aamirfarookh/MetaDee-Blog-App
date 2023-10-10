@@ -55,7 +55,7 @@ const updatePost = async(req,res)=>{
         const blogId = req.params.id;
         
         // Getting the user Id from the request body passed into the request body from the auth middleware
-        const userId = req.body.userId;
+        const { userId } = req.user;
 
         // Getting the user details from the database using it's Id.
         const user = await UserModel.findOne({_id:userId});
@@ -97,7 +97,7 @@ const deletePost = async(req,res)=>{
         const blogId = req.params.id;
 
         // Getting the user Id from the request body passed into the request body from the auth middleware
-        const userId = req.body.userId;
+        const { userId } = req.user;
 
         // Getting the user details from the database using it's Id.
         const user = await UserModel.findOne({_id:userId});
