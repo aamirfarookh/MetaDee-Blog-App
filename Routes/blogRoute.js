@@ -45,11 +45,15 @@ const upload = multer({ storage });
 blogRouter.post("/create", upload.single("image"), async (req, res) => {
   try {
     // Getting data from request body.
-    const { title, description, userId } = req.body;
+    const { title, description } = req.body;
+    const { userId } = req.user;
+
+    //Initializing the image url with an empty string
     let imageUrl = "";
 
     // Checking if all the necessary data is present in the payload or not.
     if (!title || !description || !userId) {
+        console.log(title,description,userId)
       return res.status(400).send({ msg: "Please provide all the details" });
     }
 

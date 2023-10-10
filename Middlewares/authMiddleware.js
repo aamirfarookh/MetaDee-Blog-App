@@ -19,7 +19,9 @@ const userAuth = async(req,res,next)=>{
             return res.status(401).send({msg:"Token expired. Please login again"})
         }
         else if (payload) {
-            req.body.userId = payload.userId;
+            // req.body.userId = payload.userId;
+            req.user = { userId: payload.userId };
+            
             next();
         }
         else{
